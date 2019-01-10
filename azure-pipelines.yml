@@ -2,6 +2,7 @@
 
 jobs:
 - job: Fail
+  continueOnError: true
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
