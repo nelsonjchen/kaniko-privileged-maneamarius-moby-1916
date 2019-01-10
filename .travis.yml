@@ -1,4 +1,5 @@
 language: minimal
+dist: xenial
 jobs:
   allow_failures:
     - name: "Fail with Docker Build"
