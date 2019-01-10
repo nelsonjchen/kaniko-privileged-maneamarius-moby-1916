@@ -1,4 +1,4 @@
-# Workaround for [Moby #1916, no "--priviledged" option for `docker build`](https://github.com/moby/moby/issues/1916)
+# Kaniko Workaround for [Moby #1916, no "--priviledged" option for `docker build`](https://github.com/moby/moby/issues/1916)
 
 [**See the Dockerfile in *this repo* being built on Azure Pipelines @ ![Build Status](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_apis/build/status/nelsonjchen.kaniko-privileged-maneamarius-moby-1916?branchName=master)!**](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_build/latest?definitionId=8?branchName=master)
 
