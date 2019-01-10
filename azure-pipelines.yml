@@ -13,4 +13,7 @@ jobs:
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
+  # The cache is simply to demonstrate using cache.
+  # It doesn't have any effect in Azure Pipelines
+  - script: ./warm-kaniko-cache.sh
   - script: ./build-kaniko-win.sh

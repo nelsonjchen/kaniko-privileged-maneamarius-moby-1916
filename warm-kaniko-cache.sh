@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 docker run -v $(pwd):/workspace \
 gcr.io/kaniko-project/warmer:latest \

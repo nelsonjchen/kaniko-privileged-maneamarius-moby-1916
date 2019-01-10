@@ -5,11 +5,10 @@ set -ex
 docker run \
   --cap-add=SYS_PTRACE \
   --rm \
-  -v $(pwd)/cache:/cache \
   -v $(pwd):/workspace \
   gcr.io/kaniko-project/executor:v0.7.0 \
   --context dir:///workspace/ \
-  --cache-dir=/cache \
+  --cache-dir=/workspace/cache \
   --context=/workspace \
   --tarPath=/workspace/maneamarius-gentoo-go.tar \
   --destination=maneamarius-gentoo-go \
