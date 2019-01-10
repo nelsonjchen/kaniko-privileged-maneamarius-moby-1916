@@ -1,0 +1,13 @@
+# Fail and Win Jobs
+
+jobs:
+- job: Fail
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+  - script: ./build-docker-fail.sh
+- job: Win
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+  - script: ./build-kaniko-win.sh
