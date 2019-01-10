@@ -40,6 +40,10 @@ also package manager crap left around like many of us Docker users did when we
 were Docker newbies. Kaniko cannot use overlayfs and the high amount of files does make its performance slower. The build time tax is higher for these sloppy
 `Dockerfile`s as it normally tarballs every `RUN` for its layer.
 
+In the interests of repeatability, the version is pinned to `0.7.0` which is
+the latest tagged verison but has broken intermediate layer caching support.
+The current `master` or `latest` image has working support.
+
 For demonstration purposes, the `--snapshot` argument was passed to Kaniko to
 effectively "squash" the `RUN`s down in the Dockerfile to save time by only
 tarballing once at the end. **`--snapshot` isn't required**.
