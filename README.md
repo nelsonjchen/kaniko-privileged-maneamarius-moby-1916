@@ -31,7 +31,7 @@ that is then `docker load`'ed into the Docker instance. Then, this imported
 image is used to run `go version`.
 
 ```
-# ./build-docker-fail.sh
+# ./build-kaniko-win.sh
 ```
 
 It's not all sweet though. Golang, while apparently lovely for making rather
