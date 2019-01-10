@@ -1,0 +1,10 @@
+language: minimal
+jobs:
+  allow_failures:
+    - name: "Fail with Docker Build"
+  include:
+    - stage: "Demo"
+      script: ./build-docker-fail.sh
+      name: "Fail with Docker Build"
+    - script: ./build-kaniko-win.sh
+      name: "Win with Kaniko"
