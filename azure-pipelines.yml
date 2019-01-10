@@ -2,12 +2,14 @@
 
 jobs:
 - job: Fail
+  displayName: Docker Build Fail Demo
   continueOnError: true
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
   - script: ./build-docker-fail.sh
 - job: Win
+  displayName: Kaniko Build Win Demo
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
