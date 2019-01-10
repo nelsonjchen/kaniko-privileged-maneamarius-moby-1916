@@ -1,8 +1,10 @@
 # Workaround for [Moby #1916, no "--priviledged" option for `docker build`](https://github.com/moby/moby/issues/1916#issuecomment-361175319)
 
-[See the Dockerfile in *this repo* being built on Azure Pipelines @ ![Build Status](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_apis/build/status/nelsonjchen.kaniko-privileged-maneamarius-moby-1916?branchName=master)!](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_build/latest?definitionId=8?branchName=master)
+[**See the Dockerfile in *this repo* being built on Azure Pipelines @ ![Build Status](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_apis/build/status/nelsonjchen.kaniko-privileged-maneamarius-moby-1916?branchName=master)!**](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_build/latest?definitionId=8?branchName=master)
 
-This is a demo using [Kaniko][kaniko] to build the Go compiler inside a
+---
+
+This is a demo using [Kaniko][kaniko] to build a Docker image with the Go compiler inside a
 Gentoo image with the `--cap-add=SYS_PTRACE` option. It uses the exact
 [Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker] to demonstrate the Kaniko workaround.
 
@@ -40,7 +42,7 @@ were Docker newbies. Kaniko cannot use overlayfs and the high amount of files do
 
 For demonstration purposes, the `--snapshot` argument was passed to Kaniko to
 effectively "squash" the `RUN`s down in the Dockerfile to save time by only
-tarballing once at the end. **It isn't required**.
+tarballing once at the end. **`--snapshot` isn't required**.
 
 ## Explanation
 
@@ -57,5 +59,5 @@ does not require privileged operations. Because of this use of `docker run`,
 we can also *grant it more privileged operations* and add `-cap-add=SYS_PTRACE`.
 
 
-[kaniko]:https://github.com/GoogleContainerTools/kaniko
-[maneamarius-docker]:(https://github.com/moby/moby/issues/1916#issuecomment-361175319).
+[kaniko]: https://github.com/GoogleContainerTools/kaniko
+[maneamarius-docker]: https://github.com/moby/moby/issues/1916#issuecomment-361175319
