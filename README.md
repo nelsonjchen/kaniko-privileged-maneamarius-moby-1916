@@ -1,9 +1,14 @@
 # Workaround for [Moby #1916, no "--priviledged" option for `docker build`](https://github.com/moby/moby/issues/1916#issuecomment-361175319)
 
+[See the Dockerfile in *this repo* being built on Azure Pipelines @ ![Build Status](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_apis/build/status/nelsonjchen.kaniko-privileged-maneamarius-moby-1916?branchName=master)!](https://dev.azure.com/nelsonjchen/kaniko-privileged-maneamarius-moby-1916/_build/latest?definitionId=8?branchName=master)
+
 This is a demo using [Kaniko][kaniko] to build the Go compiler inside a
 Gentoo image with the `--cap-add=SYS_PTRACE` option. It uses the exact
-[Dockerfile from maneamarius of the moby issue][maneamarius-docker] to
-demonstrate the Kaniko workaround.
+[Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker] to demonstrate the Kaniko workaround.
+
+By no means is this limited to `--cap-add=SYS_PTRACE`. You can add whatever
+is desired that you can normally add to `docker run` so `--priviledged` is
+possible.
 
 ## Usage
 
@@ -30,13 +35,12 @@ image is used to run `go version`.
 It's not all sweet though. Golang, while apparently lovely for making rather
 powerful single executable is anything but that itself as a build chain. There's
 also package manager crap left around like many of us Docker users did when we
-were newbies. Kaniko cannot use overlayfs and the high amount of files does make
-its performance slower. The build time tax is higher for these sloppy
-`Dockerfile`s.
+were Docker newbies. Kaniko cannot use overlayfs and the high amount of files does make its performance slower. The build time tax is higher for these sloppy
+`Dockerfile`s as it normally tarballs every `RUN` for its layer.
 
 For demonstration purposes, the `--snapshot` argument was passed to Kaniko to
-effectively "squash" the `RUN`s down in the Dockerfile to save time.
-*It isn't required*.
+effectively "squash" the `RUN`s down in the Dockerfile to save time by only
+tarballing once at the end. **It isn't required**.
 
 ## Explanation
 
