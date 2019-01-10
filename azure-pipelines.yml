@@ -16,4 +16,6 @@ jobs:
   # The cache is simply to demonstrate using cache.
   # It doesn't have any effect in Azure Pipelines
   - script: ./warm-kaniko-cache.sh
+    displayName: Warm up Kaniko Cache (Optional)
   - script: ./build-kaniko-win.sh
+    displayName: Build Dockerfile and Check (Kaniko w/ SYS_PTRACE)
