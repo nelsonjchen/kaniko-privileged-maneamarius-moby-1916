@@ -3,15 +3,16 @@
 set -ex
 
 docker run \
---cap-add=SYS_PTRACE \
---rm \
--v $(pwd)/cache:/cache \
--v $(pwd):/workspace \
-gcr.io/kaniko-project/executor:latest \
---context dir:///workspace/ \
---cache-dir=/cache \
---context=/workspace \
---tarPath=/workspace/test.tar \
---destination=test \
---single-snapshot
-docker import -i test.tar
+  --cap-add=SYS_PTRACE \
+  --rm \
+  -v $(pwd)/cache:/cache \
+  -v $(pwd):/workspace \
+  gcr.io/kaniko-project/executor:v0.7.0 \
+  --context dir:///workspace/ \
+  --cache-dir=/cache \
+  --context=/workspace \
+  --tarPath=/workspace/maneamarius-gentoo-go.tar \
+  --destination=maneamarius-gentoo-go \
+  --single-snapshot
+docker load -i maneamarius-gentoo-go.tar
+docker run --rm maneamarius-gentoo-go go version
