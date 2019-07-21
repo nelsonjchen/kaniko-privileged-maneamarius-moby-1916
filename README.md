@@ -5,8 +5,11 @@
 ---
 
 This is a demo using [Kaniko][kaniko] to build a Docker image with the Go compiler inside a
-Gentoo image with the `--cap-add=SYS_PTRACE` option. It uses the exact
-[Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker] to demonstrate the Kaniko workaround.
+Gentoo image with the `--cap-add=SYS_PTRACE` option. It almost uses the exact
+[Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker]
+to demonstrate the Kaniko workaround. The only difference is altering the
+Dockerfile to pin to and use an image of Gentoo at the time of the post for
+the base.
 
 By no means is this limited to `--cap-add=SYS_PTRACE`. You can add whatever
 is desired that you can normally add to `docker run` so `--priviledged` is

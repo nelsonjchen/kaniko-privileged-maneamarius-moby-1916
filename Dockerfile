@@ -1,4 +1,4 @@
-FROM gentoo/stage3-amd64
+FROM gentoo/stage3-amd64:20190110
 # Download and extract latest portage
 RUN wget http://distfiles.gentoo.org/snapshots/portage-latest.tar.bz2 && \
     wget http://distfiles.gentoo.org/snapshots/portage-latest.tar.bz2.md5sum && \
