@@ -5,8 +5,11 @@
 ---
 
 This is a demo using [Kaniko][kaniko] to build a Docker image with the Go compiler inside a
-Gentoo image with the `--cap-add=SYS_PTRACE` option. It uses the exact
-[Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker] to demonstrate the Kaniko workaround.
+Gentoo image with the `--cap-add=SYS_PTRACE` option. It almost uses the exact
+[Dockerfile from maneamarius who commented in the moby issue with an example][maneamarius-docker]
+to demonstrate the Kaniko workaround. The only difference is altering the
+Dockerfile to pin to and use an image of Gentoo at the time of the post for
+the base.
 
 By no means is this limited to `--cap-add=SYS_PTRACE`. You can add whatever
 is desired that you can normally add to `docker run` so `--priviledged` is
@@ -37,12 +40,11 @@ image is used to run `go version`.
 It's not all sweet though. Golang, while apparently lovely for making rather
 powerful single executable is anything but that itself as a build chain. There's
 also package manager crap left around like many of us Docker users did when we
-were Docker newbies. Kaniko cannot use overlayfs and the high amount of files does make its performance slower. The build time tax is higher for these sloppy
+were Docker newbies. Kaniko cannot use overlayfs and the high amount of files
+does make its performance slower. The build time tax is higher for these sloppy
 `Dockerfile`s as it normally tarballs every `RUN` for its layer.
 
-In the interests of repeatability, the version is pinned to `0.7.0` which is
-the latest tagged verison but has broken intermediate layer caching support.
-The current `master` or `latest` image has working support.
+In the interests of repeatability, the version is pinned to `0.10.0`.
 
 For demonstration purposes, the `--snapshot` argument was passed to Kaniko to
 effectively "squash" the `RUN`s down in the Dockerfile to save time by only
